@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .basic{
+            width: 500px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .a {
+            background-color: red;
+        }
+        .b {
+            background-color: pink;
+        }
+        .c{
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        绑定class样式--字符串写法，适用于：样式类名不确定，需要动态指定
+     -->
+    <div id="app">
+       <div class="basic" :class="mood" @click="changeColor">test</div>
+    </div>
+    <script>
+        const app = {
+            data(){
+                return {
+                    mood:"a"
+                }
+            },
+            methods:{
+                changeColor(){
+                    const arr = ["a","b","c"]
+
+                    const index = Math.floor(Math.random()*3) //向下取整与生成随机数
+                    this.mood = arr[index]
+                }
+            }
+        }
+        Vue.createApp(app).mount("#app");
+        
+    </script>
+</body>
+</html>
