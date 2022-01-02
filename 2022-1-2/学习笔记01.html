@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习笔记1</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .btn{
+            width: 100%;
+            height: 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        Vue的事件修饰符；
+        1.prevent:阻止默认
+        2.stop:阻止冒泡
+        3.once:事件只触发一次
+     -->
+    <div id="app">
+        <div class="btn" @click = message>
+            <button @click.stop = message>提交一次</button>
+        </div>
+    </div>
+    <script>
+        const app = {
+            data(){
+                return {
+                    num : 123
+                }
+            },
+            methods:{
+                message(){
+                    alert("你好");
+                }
+            }
+        }
+        Vue.createApp(app).mount("#app");
+        
+    </script>
+</body>
+</html>
