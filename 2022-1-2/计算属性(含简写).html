@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <!-- 
+       计算属性:
+       1.定义：要计算的属性不存在，通过已有属性来计算
+       2.原理：底层借助了Objcet.defindproperty方法提供的getter and setter
+       3.get函数什么时候执行?
+            (1).初次读取时执行一次
+            (2).依赖的数据发生变化的时候再次调用
+        4.优势:与methods实现相比，内部有缓存机制(复用),效率更高，调试方便。
+     -->
+    <div id="app">
+        姓:<input type="text" v-model="frist"> <br>
+        名:<input type="text" v-model="last"><br>
+        全名:{{full}}
+    </div>
+    <script>
+        const app = {
+            data(){
+                return {
+                    frist:"张",
+                    last:"三"
+                }
+            },
+            // 方法
+            methods:{
+               
+            },
+            // 计算属性
+           /*
+            computed:{
+                full:{
+                    get(){
+                        return this.frist + "-" + this.last
+                    },
+                    set(){
+
+                    }
+                }
+            }
+            */
+            // 确保计算属性中不含 set方法 只有 get方法 时可用以下简写方式
+            computed:{
+                full(){
+                    return this.frist + "-" + this.last
+                }
+            }
+        }   
+        Vue.createApp(app).mount("#app");
+        
+    </script>
+</body>
+</html>
